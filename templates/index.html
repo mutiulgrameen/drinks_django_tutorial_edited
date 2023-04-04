@@ -9,11 +9,18 @@
     </head>
 
     <body>
+        <!--<iframe width="350" heaight="430" src="https://console.dialogflow.com/api-client/demo/embedded/e1b9bbf8-c1d0-4197-915c-6a6512701b5f"></iframe>-->
         <h1>Hello Human !</h1>
         <hr>
-        <form action="chat">
-            Please state your human query <input type="text" name="query" required><br>
-            <input type="submit">
+        {% if query %}
+            <br><b>Query:</b> {{query}} <br><br>
+            <br><b>Answer:</b> {{ans}} <br><br>
+        {% endif %}
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            <br><b>Please state your human query:</b> <input type="text" size="100" name="query" required><br><br>
+            <input type="Submit">
 
         </form>
 

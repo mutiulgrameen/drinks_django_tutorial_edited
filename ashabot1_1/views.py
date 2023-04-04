@@ -113,16 +113,19 @@ def my_view(requests):
 """
 
 def Welcome(request):
-    return render(request, 'index.html')
-def Chat1(request):
-    query = request.GET['query']
+    if request.method == 'POST':
+        query = request.POST['query']
     #print(username)
     # chatbot response
-    data_out, conf = chat_resp(query)
-    response_text = data_out.text
-    add2_db(query, response_text)
-    return render(request, 'chat.html', {'query':query, 'ans':response_text})
-"""
+        data_out, conf = chat_resp(query)
+        response_text = data_out.text
+        #print(response_text)
+        add2_db(query, response_text)
+        return render(request, 'index.html', {'query':query, 'ans':response_text})
+    return render(request, 'index.html')
+#def Chat1(request):
+    
+
 class ASHABot1(APIView):
     def __init__(self):
         self.data = ['Please state your mental health query']
@@ -153,7 +156,7 @@ class ASHABot1(APIView):
            "Data" :str(data_out),
            "Accuracy" :conf
         })
-"""       
+       
 """
 
 
