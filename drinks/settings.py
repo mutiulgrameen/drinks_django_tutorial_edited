@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'API1',         # new
     'django_filters', # new
     'ashabot1_1',
+    'corsheaders',      #
 ]
 
 MIDDLEWARE = [
@@ -52,8 +52,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.CommonMiddleware',    #
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True  # allow any origin to access the API
 ROOT_URLCONF = 'drinks.urls'
 
 TEMPLATES = [

@@ -31,7 +31,11 @@ def index(request):
 def fast_app(request):
     return HttpResponse('<h1> Automated Sentient Health Assistant Robot (ASHABot1) </h1>')
 
-def add2_db(q, a):
+def add2_db(q, a, conf):
+    if a == "I am sorry, but I do not understand.":
+        flag = True
+    else:
+        flag = False
     #print(type(q))
     #print(type(a))
     database = 'D:\\chatbot\\ASAbot-master\\db_response.db'
@@ -46,7 +50,7 @@ def add2_db(q, a):
         #query = 'INSERT INTO bot_response (Question, Answer) VALUES (?, ?)'
         #data = (q, a)
         #cursor.execute(query, data)
-        cursor.execute("INSERT INTO bot_response (Question, Answer) VALUES (?, ?)", (q, a))
+        cursor.execute("INSERT INTO bot_response (Question, Answer, Conf, Flag) VALUES (?, ?, ?, ?)", (q, a, conf, flag))
         conn.commit()
         #Id = Id + 1
         # cursor.close()
@@ -120,7 +124,7 @@ def Welcome(request):
         data_out, conf = chat_resp(query)
         response_text = data_out.text
         #print(response_text)
-        add2_db(query, response_text)
+        add2_db(query, response_text, conf)
         return render(request, 'index.html', {'query':query, 'ans':response_text})
     return render(request, 'index.html')
 #def Chat1(request):
@@ -140,7 +144,7 @@ class ASHABot1(APIView):
 #        asha = "E:\grameen\chatbot\my_code_1\ashabot1.py"
         data_out, conf = chat_resp(data_in)
         response_text = data_out.text
-        add2_db(data_in, response_text)      # adding to db
+        add2_db(data_in, response_text, conf)      # adding to db
 
         #return render(requests, 'index.html')   # changed
 
