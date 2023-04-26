@@ -1,3 +1,5 @@
+## FIX THIS ##
+
 """drinks URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -17,12 +19,12 @@ from django.contrib import admin
 from django.urls import path, include
 from drinks import views
 from rest_framework.urlpatterns import format_suffix_patterns
-#import .views
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('drinks/', views.drink_list),
-    path('drinks/<int:id>/', views.drink_detail),
+    #path('admin/', admin.site.urls),
+    #path('drinks/', views.drink_list),
+    #path('drinks/<int:id>/', views.drink_detail),
     path("", include('ashabot1_1.urls')),
 ]
 
